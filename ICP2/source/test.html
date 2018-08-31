@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather - ICP2</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.1/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+
+<script>
+    angular.module('weather', [])
+        .controller('weathercontrol', function($scope, $http) {
+            $scope.getWeatherReport = function() {
+                var state= $scope.state;
+                var city = $scope.city;
+
+                $http.get('https://api.wunderground.com/api/36b799dc821d5836/hourly/q/' + state + '/' + city + '.json').success(function (data) {
+                    console.log(data);
+                    $scope.temp = data.hourly_forecast;
+                })
+            }
+        });
+</script>
+
+<body ng-app="weather" ng-controller="weathercontrol">
+
+<div class="jumbotron ">
+
+
+
+<div  class="container">
+    <div class="row">
+        <div class="col-md-4" >
+
+            <input type="text" class="form-control" placeholder="state code" ng-model="state" required>
+        </div>
+
+        <div class="col-md-4" >
+
+            <input type="text" class="form-control" placeholder="city name" ng-model="city" required>
+        </div>
+        <div class="col-md-4">
+            <button  type = "submit" ng-click="getWeatherReport()" class="btn btn-primary">search weather</button>
+        </div>
+    </div>
+</div>
+</div>
+
+    <br/>
+    <div class="container"><h2> Weather Report</h2>
+    <br/>
+    <div class="weatherModule col-md-2 col-sm-4 well" ng-repeat="x in temp|limitTo:5" style="margin-left: 2px;" >
+        <p>{{x.FCTTIME.civil}}</p>
+        <p class="currentConditions" >{{x.temp.english}}&#8457;  {{x.condition}}</p>
+        <div class="currentIcon"><img src = "{{x.icon_url}}" /></div>
+    </div>
+    </div>
+</body>
