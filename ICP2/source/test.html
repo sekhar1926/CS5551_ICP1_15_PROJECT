@@ -27,13 +27,13 @@
         });
 </script>
 
-<body ng-app="weather" ng-controller="weathercontrol">
+<body>
 
 <div class="jumbotron ">
+    <div class="container"><h2> Weather Report</h2></div>
 
-
-
-<div  class="container">
+</div>
+<div ng-app="weather" ng-controller="weathercontrol" class="container">
     <div class="row">
         <div class="col-md-4" >
 
@@ -48,16 +48,13 @@
             <button  type = "submit" ng-click="getWeatherReport()" class="btn btn-primary">search weather</button>
         </div>
     </div>
-</div>
-</div>
 
     <br/>
-    <div class="container"><h2> Weather Report</h2>
     <br/>
     <div class="weatherModule col-md-2 col-sm-4 well" ng-repeat="x in temp|limitTo:5" style="margin-left: 2px;" >
         <p>{{x.FCTTIME.civil}}</p>
         <p class="currentConditions" >{{x.temp.english}}&#8457;  {{x.condition}}</p>
         <div class="currentIcon"><img src = "{{x.icon_url}}" /></div>
     </div>
-    </div>
+</div>
 </body>
