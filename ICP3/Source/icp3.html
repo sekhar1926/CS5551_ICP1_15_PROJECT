@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ICP3</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.1/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+
+<script>
+    function showDiv() {
+        document.getElementById('div').style.display = "block";
+    }
+    angular.module('mashup', [])
+        .controller('mashupctrl', function($scope, $http) {
+
+            $scope.getcalories = function(){
+
+                $http.get('https://api.nutritionix.com/v1_1/search/' +$scope.item1 +'?results=0:1&fields=*&appId=fbf7ad82&appKey=6b37f97500b283c512a147c47c0be9f8')
+                    .success(function (data2) {
+                        console.log(data2);
+                        cal = data2.hits[0].fields.nf_calories;
+                        cal1 = data2.hits[0].fields.nf_water_grams;
+                        $scope.calorie = cal;
+                        if(cal1==null){
+                            cal1=0;
+                        }
+                        $scope.calorie1 = cal1;
+                   })
+            };
+            $scope.getspeech = function() {
+                var URL = 'https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=1fd7819a-e803-4a0e-8d31-190e063a41c4&password=D8V356kGXTbK&text=' +$scope.item1 +'';
+                var voice = new Audio(URL);
+                voice.play();
+            };
+
+        });
+</script>
+
+<body style="background: lightgray">
+
+<div class="jumbotron" style="background: black">
+    <h4 style="text-align: center; color: white; ">ICP-3</h4>
+</div>
+<div ng-app="mashup" ng-controller="mashupctrl" class="container">
+
+        <div class="col-sm-6" style="background: white; padding: 25px;">
+
+
+            <form >
+
+                <div><input type="text"  class="form-control" id="item1"
+                                             ng-model="item1" placeholder="Enter item "></div>
+
+                <div ><input type="button" class="btn btn-primary" style="margin-top: 15px;"
+                                             ng-click="getcalories();getspeech()" onclick="showDiv()" value="search"></div>
+
+
+            </form>
+
+        </div>
+        <div class="col-sm-6">
+            <div  class="well" id="div" hidden>
+                <p><b>calories</b>:{{calorie}}  </p> <br/><br/><p><b> Serving weights in grams</b>:{{calorie1}}</p>
+
+            </div>
+        </div>
+
+
+</div>
+</body>
