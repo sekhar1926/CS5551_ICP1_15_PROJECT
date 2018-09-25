@@ -54,12 +54,12 @@ public class MyMapsActivity extends FragmentActivity implements OnMapReadyCallba
         public void onMapReady (GoogleMap googleMap){
         if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            Location lc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Location current = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (lc != null) {
-                LatLng sydney = new LatLng(lc.getLatitude(), lc.getLongitude());
-                googleMap.addMarker(new MarkerOptions().position(sydney)
-                        .title("Latitude :"+lc.getLatitude()+" , Longitude :"+lc.getLongitude()));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                LatLng coordinates = new LatLng(current.getLatitude(), current.getLongitude());
+                googleMap.addMarker(new MarkerOptions().position(coordinates)
+                        .title("Latitude :"+current.getLatitude()+" , Longitude :"+current.getLongitude()));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates));
             }
         }
         }
