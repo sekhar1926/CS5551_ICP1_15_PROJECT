@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body class="body">
+
+
+  <div  ng-controller="View1Ctrl">
+      <div class="jumbotron text-center">
+            <h1>Track Ip</h1>
+            <div class="continer">
+                <div class="form-group">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4">
+                        <div class="col-xs-10">
+                        <input type="text" class="form-control" id="ipaddress" placeholder="ip address" />
+                    </div>
+                    <div class="col-xs-2">
+                        <button  class="btn btn-primary" ng-click="getinfo()">Get Info</button>
+                    </div>
+                    </div>
+                    <div class="col-xs-4"></div>
+                    
+  
+                </div>
+            </div>
+        </div>
+      <div class="container" id ="result">
+  <div style="text-align:center">
+    <h2>Information</h2>
+    
+  </div>
+  <div class="row">
+    <div class="container">
+        <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>City name</td>
+        <td>{{city}}</td>
+      </tr>
+      <tr>
+        <td>Country name</td>
+        <td>{{country_name}}</td>
+      </tr>
+      <tr>
+        <td>continent name</td>
+        <td>{{continent_name}}</td>
+      </tr>
+        <tr>
+        <td>State</td>
+        <td>{{region_name}}</td>
+      </tr>
+        <tr>
+        <td>zip code</td>
+        <td>{{zip}}</td>
+      </tr>
+        <tr>
+        <td>latitude</td>
+        <td>{{latitude}}</td>
+      </tr>
+        <tr>
+        <td>longitude</td>
+        <td>{{longitude}}</td>
+      </tr>
+        
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+  <script src="app.js"></script>
+
+
+</body>
+</html>
