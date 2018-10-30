@@ -9,7 +9,7 @@ angular.module('myApp', [])
             var ipaddress = document.getElementById("ipaddress").value;
             
             if (ipaddress != null) {
-                var handler = $http.get('http://api.ipstack.com/'+ipaddress+'?access_key=c0ca9ee6ec152480cbd9fc4137aa8a03');
+                var handler = $http.get('https://api.ipstack.com/'+ipaddress+'?access_key=c0ca9ee6ec152480cbd9fc4137aa8a03');
                 handler.success(function (data) {
                     console.log(data);
                     $scope.city = data.city;
